@@ -3,19 +3,33 @@ node_modules/
 
 # Build output
 dist/
+.vite/
+
+# TypeScript build info
+*.tsbuildinfo
+
+# Test coverage
+coverage/
 
 # Environment variables
 .env
 .env.*.local
 .env.local
 
+# Runtime caches
+.eslintcache
+*.local
+
 # Logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
+*.log
 
 # Editor directories and files
 .vscode/
 .idea/
 .DS_Store
 Thumbs.db
+.history/
