@@ -13,7 +13,7 @@ EduToon is a Vite + React + TypeScript application that turns a set of interacti
 
 ## Tech Stack
 
-- [Vite](https://vitejs.dev/) for bundling and dev server
+- Vite for bundling and dev server
 - React 18 with TypeScript
 - MediaPipe Tasks (ImageSegmenter) for background masking
 - Web Speech API (speech recognition and synthesis)
@@ -46,6 +46,3 @@ npm run preview
 - `momo.jpeg` and `Doll.webp` are required assets referenced in the UI. Replace them with your own artwork if needed but keep the filenames or update imports accordingly.
 - The app assumes camera and microphone permissions are granted at runtime; otherwise it falls back to explanatory text or speech.
 
-## Project Status
-
-This repository currently contains only the front-end experience. There is no backend or data persistence. Contributions should include updated assets or UX improvements rather than server-side code.
