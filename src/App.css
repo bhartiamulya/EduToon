@@ -1,0 +1,1114 @@
+
+.app {
+  position: relative;
+  min-height: 100vh;
+  padding: clamp(0px, 2vw, 12px) clamp(16px, 5vw, 64px) clamp(72px, 8vw, 96px);
+  overflow: hidden;
+  background: url('/background.avif') center / cover no-repeat;
+}
+
+body {
+  overflow: hidden;
+}
+
+.slide-view {
+  position: relative;
+  height: 100%;
+}
+
+.slides {
+  display: flex;
+  transition: transform 0.6s ease;
+}
+
+.slide {
+  flex: 0 0 100%;
+  padding: clamp(0px, 1.5vh, 10px) clamp(16px, 5vw, 48px) clamp(60px, 8vh, 100px);
+  box-sizing: border-box;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.slide-content {
+  width: min(1120px, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 5vw, 48px);
+  margin: 0 auto;
+  align-items: center;
+  padding-bottom: clamp(56px, 10vh, 110px);
+}
+
+.hero-slide {
+  padding-top: clamp(20px, 4vh, 36px);
+  align-items: stretch;
+}
+
+.color-slide {
+  padding-top: clamp(0px, 0.5vh, 6px);
+  padding-bottom: clamp(16px, 5vh, 36px);
+}
+
+.slides .slide:nth-child(3) {
+  align-items: flex-start;
+}
+
+.slides .slide:nth-child(2) {
+  padding-top: 0;
+}
+
+.shapes-slide,
+.clap-slide {
+  padding-top: clamp(6px, 2.5vh, 24px);
+  padding-bottom: clamp(100px, 16vh, 150px);
+}
+
+.manners-slide,
+.safety-slide,
+.pledge-slide {
+  padding-top: clamp(16px, 3vh, 32px);
+  padding-bottom: clamp(100px, 16vh, 150px);
+}
+
+.safety-slide {
+  padding-top: clamp(2px, 2vh, 16px);
+  padding-bottom: clamp(110px, 18vh, 160px);
+}
+
+.slide-controls {
+  position: fixed;
+  bottom: clamp(12px, 4vw, 36px);
+  right: clamp(20px, 6vw, 56px);
+  left: clamp(20px, 6vw, 56px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none;
+  z-index: 45;
+}
+
+.momo-avatar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  will-change: transform;
+  transition: transform 0.6s cubic-bezier(0.2, 0.85, 0.3, 1.1), opacity 0.35s ease;
+  z-index: 50;
+}
+
+.momo-image {
+  width: clamp(150px, 16vw, 220px);
+  aspect-ratio: 1;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: drop-shadow(0 24px 36px rgba(90, 54, 134, 0.3));
+  transform-origin: center bottom;
+}
+
+.momo-image.blinking {
+  animation: momo-blink 0.22s ease-in-out forwards;
+}
+
+@keyframes momo-blink {
+  0% {
+    transform: scaleY(1);
+  }
+  40% {
+    transform: scaleY(0.35);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+.arrow-button {
+  pointer-events: auto;
+  width: clamp(48px, 6vw, 62px);
+  height: clamp(48px, 6vw, 62px);
+  border-radius: 50%;
+  border: 6px solid #ffffff;
+  background: radial-gradient(circle at top, #ff6f61, #d84315);
+  color: #fff5f1;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 700;
+  box-shadow: 0 16px 0 rgba(176, 47, 26, 0.4);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.arrow-button:active {
+  transform: translateY(4px);
+  box-shadow: 0 8px 0 rgba(176, 47, 26, 0.5);
+}
+
+.slide-dots {
+  display: flex;
+  gap: clamp(8px, 2vw, 16px);
+  pointer-events: auto;
+}
+
+.dot {
+  width: clamp(10px, 2vw, 14px);
+  height: clamp(10px, 2vw, 14px);
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 6px 12px rgba(90, 56, 138, 0.25);
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.dot.active {
+  background: #ff5252;
+  transform: scale(1.2);
+}
+
+.confetti-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 40;
+  overflow: hidden;
+}
+
+.confetti-piece {
+  position: absolute;
+  top: -12vh;
+  border-radius: 999px;
+  animation: confetti-fall linear forwards;
+  opacity: 0.92;
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translate3d(0, -12vh, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate3d(0, 110vh, 0) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.hero {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(24px, 4vw, 48px);
+  background: linear-gradient(135deg, #ffee94 0%, #ffd1dc 45%, #b5e5ff 100%);
+  border-radius: 48px;
+  padding: clamp(24px, 4vw, 56px);
+  box-shadow: 0 34px 68px rgba(90, 54, 134, 0.28);
+  overflow: hidden;
+}
+
+.hero-illustration {
+  position: relative;
+  flex: 1 1 320px;
+  min-height: clamp(280px, 32vw, 380px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.hero-mascot {
+  position: relative;
+  width: min(340px, 80%);
+  filter: drop-shadow(0 24px 40px rgba(88, 49, 148, 0.25));
+  animation: bounce-soft 4s ease-in-out infinite alternate;
+}
+
+.cloud {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.65);
+  border-radius: 999px;
+  box-shadow: 60px 16px 0 -6px rgba(255, 255, 255, 0.55), -48px 22px 0 -12px rgba(255, 255, 255, 0.5);
+  filter: blur(0.4px);
+  animation: cloud-drift 10s linear infinite;
+}
+
+.cloud-left {
+  width: 200px;
+  height: 110px;
+  bottom: 40%;
+  left: -40px;
+}
+
+.cloud-right {
+  width: 170px;
+  height: 100px;
+  top: 12%;
+  right: -32px;
+}
+
+.twinkle {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.9);
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  animation: twinkle 2.8s ease-in-out infinite;
+}
+
+.twinkle-one {
+  top: 10%;
+  left: 18%;
+}
+
+.twinkle-two {
+  top: 36%;
+  right: 12%;
+  animation-delay: 1s;
+}
+
+.twinkle-three {
+  bottom: 18%;
+  right: 24%;
+  animation-delay: 1.8s;
+}
+
+.rainbow-arch {
+  position: absolute;
+  inset: auto auto -12% -20%;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: conic-gradient(from 180deg, #ff6f61, #ffa726, #ffeb3b, #4caf50, #29b6f6, #7e57c2, #ff6f61);
+  opacity: 0.3;
+  filter: blur(1px);
+}
+
+.balloon {
+  position: absolute;
+  width: 60px;
+  height: 80px;
+  border-radius: 40px 40px 36px 36px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.8), rgba(255, 110, 97, 0.75));
+  animation: floaty 6s ease-in-out infinite;
+}
+
+.balloon::after {
+  content: '';
+  position: absolute;
+  bottom: -26px;
+  left: 50%;
+  width: 2px;
+  height: 26px;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.balloon-one {
+  top: 18%;
+  left: 12%;
+}
+
+.balloon-two {
+  bottom: 12%;
+  right: 8%;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.8), rgba(41, 182, 246, 0.8));
+  animation-delay: 1.2s;
+}
+
+.hero-copy {
+  flex: 1 1 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: #4a2c82;
+}
+
+.hero-badge {
+  align-self: flex-start;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.85);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  box-shadow: 0 10px 18px rgba(84, 50, 138, 0.16);
+}
+
+.hero-copy h1 {
+  margin: 0;
+  font-size: clamp(2.8rem, 5vw, 4.4rem);
+  font-family: 'Baloo Bhaijaan 2', cursive;
+  line-height: 1.05;
+  color: #6026a1;
+}
+
+.hero-copy p {
+  margin: 0;
+  font-size: clamp(1.05rem, 2.1vw, 1.35rem);
+  max-width: 520px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.bubble-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  border: none;
+  border-radius: 48px;
+  padding: 16px 30px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ff6f61, #ff8e53);
+  color: #ffffff;
+  box-shadow: 0 10px 0 #d84315;
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+}
+
+.bubble-button.secondary {
+  background: linear-gradient(135deg, #7e57c2, #5c6bc0);
+  box-shadow: 0 10px 0 #3c3f91;
+}
+
+.bubble-button:disabled {
+  cursor: not-allowed;
+  filter: saturate(0.4);
+  box-shadow: 0 6px 0 rgba(120, 120, 120, 0.4);
+}
+
+.bubble-button:active {
+  transform: translateY(3px) scale(0.98);
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+.bubble-icon {
+  font-size: 1.4rem;
+}
+
+.hero-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 12px 22px rgba(84, 50, 138, 0.14);
+  font-size: 0.95rem;
+}
+
+.status-light {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  box-shadow: 0 0 12px currentColor;
+}
+
+.status-idle {
+  color: #ffeb3b;
+}
+
+.status-listening {
+  color: #29b6f6;
+}
+
+.status-speaking {
+  color: #ff5252;
+}
+
+.game-gallery {
+  display: grid;
+  gap: clamp(16px, 3vw, 28px);
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.game-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 26px;
+  border-radius: 32px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 4px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 20px 40px rgba(92, 65, 145, 0.14);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.game-card::after {
+  content: '';
+  position: absolute;
+  inset: 12px;
+  border-radius: 26px;
+  border: 1px dashed rgba(255, 255, 255, 0.35);
+  pointer-events: none;
+}
+
+.game-card.active {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 26px 54px rgba(92, 65, 145, 0.22);
+}
+
+.game-card h2 {
+  margin: 0;
+  font-size: 1.6rem;
+  font-family: 'Baloo Bhaijaan 2', cursive;
+  color: #5a2ea5;
+}
+
+.game-card p {
+  margin: 0;
+  color: #4c3f72;
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.sticker {
+  width: clamp(80px, 10vw, 110px);
+  height: auto;
+  filter: drop-shadow(0 16px 22px rgba(90, 54, 134, 0.25));
+}
+
+.card-switch {
+  border: none;
+  border-radius: 28px;
+  padding: 10px 18px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.86);
+  color: #522e91;
+  box-shadow: 0 12px 0 rgba(82, 46, 145, 0.18);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-switch:active {
+  transform: translateY(3px);
+  box-shadow: 0 6px 0 rgba(82, 46, 145, 0.26);
+}
+
+.accent-color {
+  background: linear-gradient(135deg, rgba(255, 82, 82, 0.22), rgba(255, 235, 59, 0.22));
+  border-color: rgba(255, 82, 82, 0.42);
+}
+
+.accent-shapes {
+  background: linear-gradient(135deg, rgba(126, 87, 194, 0.24), rgba(255, 167, 38, 0.2));
+  border-color: rgba(126, 87, 194, 0.42);
+}
+
+.accent-clap {
+  background: linear-gradient(135deg, rgba(41, 182, 246, 0.24), rgba(255, 111, 97, 0.24));
+  border-color: rgba(41, 182, 246, 0.42);
+}
+
+.playground {
+  display: grid;
+  gap: clamp(24px, 4vw, 36px);
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+}
+
+.activity-slide {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  align-items: start;
+  gap: clamp(20px, 4vw, 36px);
+}
+
+.activity-slide .playground-frame {
+  position: relative;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(210, 196, 255, 0.65));
+  border-radius: 40px;
+  padding: clamp(18px, 3vw, 28px);
+  box-shadow: 0 24px 48px rgba(90, 54, 134, 0.18);
+}
+
+.playground-frame {
+  position: relative;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(210, 196, 255, 0.65));
+  border-radius: 40px;
+  padding: clamp(18px, 3vw, 28px);
+  box-shadow: 0 24px 48px rgba(90, 54, 134, 0.18);
+}
+
+.frame-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.frame-bow {
+  width: 48px;
+  height: 42px;
+  border-radius: 50% 50% 10% 10%;
+  background: linear-gradient(135deg, #ff8e53, #ff6f61);
+  box-shadow: 0 12px 20px rgba(255, 111, 97, 0.4);
+}
+
+.frame-bow.right {
+  background: linear-gradient(135deg, #29b6f6, #7e57c2);
+}
+
+.frame-title {
+  font-family: 'Baloo Bhaijaan 2', cursive;
+  font-size: 1.6rem;
+  color: #4a2c82;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 10px 24px;
+  border-radius: 999px;
+  box-shadow: 0 12px 18px rgba(83, 51, 134, 0.16);
+}
+
+.frame-body {
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 30px;
+  padding: clamp(20px, 3vw, 32px);
+  min-height: clamp(260px, 36vh, 320px);
+  box-shadow: inset 0 0 0 6px rgba(255, 255, 255, 0.6);
+}
+
+.frame-waves {
+  margin-top: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: repeating-linear-gradient(90deg, rgba(126, 87, 194, 0.35) 0, rgba(126, 87, 194, 0.35) 18px, rgba(255, 255, 255, 0.2) 18px, rgba(255, 255, 255, 0.2) 36px);
+}
+
+.play-tips {
+  align-self: stretch;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(255, 247, 200, 0.9));
+  border-radius: 36px;
+  padding: clamp(20px, 3vw, 32px);
+  box-shadow: 0 20px 40px rgba(90, 54, 134, 0.14);
+}
+
+.play-tips h3 {
+  margin: 0 0 16px;
+  font-size: 1.4rem;
+  font-family: 'Baloo Bhaijaan 2', cursive;
+  color: #f06292;
+}
+
+.play-tips ul {
+  margin: 0;
+  padding-left: 20px;
+  display: grid;
+  gap: 12px;
+  color: #4f3b77;
+  font-size: 1rem;
+}
+
+.play-tips li::marker {
+  content: '✦';
+  color: #ff6f61;
+}
+
+.game {
+  display: grid;
+  gap: clamp(18px, 3vh, 28px);
+}
+
+.game-camera {
+  justify-items: center;
+  text-align: center;
+  gap: 18px;
+}
+
+.camera-feed {
+  position: relative;
+  width: min(520px, 100%);
+  max-width: 520px;
+  aspect-ratio: 4 / 3;
+  min-height: clamp(260px, 45vh, 420px);
+  border-radius: 32px;
+  overflow: hidden;
+  box-shadow: 0 24px 42px rgba(91, 58, 146, 0.32);
+  border: 10px solid rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.camera-feed::after {
+  content: '';
+  position: absolute;
+  inset: 12px;
+  border: 3px dashed rgba(255, 255, 255, 0.35);
+  border-radius: 24px;
+  pointer-events: none;
+}
+
+.camera-feed video,
+.camera-feed canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+.camera-feed video {
+  display: none;
+}
+
+.camera-feed canvas {
+  z-index: 1;
+  background: #000;
+  transform: scaleX(-1);
+}
+
+.camera-placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #5a2ea5;
+  background: rgba(255, 255, 255, 0.85);
+  z-index: 1;
+}
+
+.prompt {
+  font-size: 1.25rem;
+  color: #5a2ea5;
+  margin: 0;
+}
+
+.detected {
+  font-weight: 700;
+  color: #ff6f61;
+}
+
+.action {
+  border: none;
+  border-radius: 42px;
+  padding: 12px 24px;
+  font-weight: 700;
+  font-size: 1.05rem;
+  background: linear-gradient(135deg, rgba(255, 111, 97, 0.9), rgba(255, 167, 38, 0.9));
+  color: #fff5f1;
+  box-shadow: 0 10px 0 rgba(214, 93, 77, 0.6);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.action:active {
+  transform: translateY(3px);
+  box-shadow: 0 5px 0 rgba(214, 93, 77, 0.7);
+}
+
+.game-clap {
+  justify-items: center;
+  text-align: center;
+}
+
+.clap-indicator {
+  font-size: clamp(3.6rem, 11vw, 6.4rem);
+  filter: drop-shadow(0 16px 32px rgba(255, 111, 97, 0.45));
+  animation: wiggle 2s ease-in-out infinite;
+}
+
+.clap-indicator.active {
+  animation-duration: 0.9s;
+}
+
+.game-shapes {
+  gap: 24px;
+}
+
+.shape-board {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  justify-content: center;
+}
+
+.slot {
+  position: relative;
+  display: grid;
+  place-items: center;
+  gap: 12px;
+  padding: 24px 20px;
+  border-radius: 32px;
+  min-width: 160px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 4px dashed rgba(126, 87, 194, 0.3);
+  box-shadow: inset 0 0 0 10px rgba(126, 87, 194, 0.12);
+}
+
+.slot svg {
+  width: 110px;
+  height: 110px;
+}
+
+.slot span {
+  font-weight: 700;
+  color: #4a2c82;
+}
+
+.shape-drawer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+.shape-piece {
+  min-width: 150px;
+  padding: 16px 22px;
+  border-radius: 40px;
+  border: 3px solid rgba(255, 255, 255, 0.7);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #3d255f;
+  cursor: grab;
+  box-shadow: 0 16px 0 rgba(61, 37, 95, 0.08);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.shape-piece:active {
+  cursor: grabbing;
+  transform: translateY(3px);
+  box-shadow: 0 8px 0 rgba(61, 37, 95, 0.12);
+}
+
+.shape-piece.matched {
+  background: linear-gradient(135deg, #6be3c4, #43c5a3);
+  color: #ffffff;
+}
+
+.manners {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(255, 209, 220, 0.85));
+  border-radius: 44px;
+  padding: clamp(24px, 4vw, 40px);
+  box-shadow: 0 24px 44px rgba(92, 65, 145, 0.18);
+  text-align: center;
+}
+
+.manners h2 {
+  font-family: 'Baloo Bhaijaan 2', cursive;
+  color: #5a2ea5;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  margin: 0 0 12px;
+}
+
+.manners p {
+  margin: 0 0 24px;
+  color: #4b3d75;
+  font-size: 1.1rem;
+}
+
+.manners-cards {
+  display: grid;
+  gap: clamp(16px, 3vw, 24px);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.manners-card {
+  border-radius: 32px;
+  padding: 24px 20px;
+  color: #4a2c82;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 18px 38px rgba(92, 65, 145, 0.15);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.manners-card h3 {
+  margin: 0 0 12px;
+  font-size: 1.4rem;
+  font-family: 'Baloo Bhaijaan 2', cursive;
+}
+
+.manners-card.please {
+  border: 4px solid rgba(255, 111, 97, 0.4);
+}
+
+.manners-card.thankyou {
+  border: 4px solid rgba(76, 175, 80, 0.35);
+}
+
+.manners-card.sorry {
+  border: 4px solid rgba(41, 182, 246, 0.35);
+}
+
+.safety {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(181, 229, 255, 0.85));
+  border-radius: 44px;
+  padding: clamp(18px, 3vw, 32px) clamp(24px, 4vw, 42px) clamp(28px, 4vw, 48px);
+  box-shadow: 0 24px 44px rgba(92, 65, 145, 0.18);
+}
+
+.safety h2 {
+  margin: 0 0 12px;
+  font-family: 'Baloo Bhaijaan 2', cursive;
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  color: #4a2c82;
+}
+
+.safety p {
+  margin: 0 0 24px;
+  color: #354063;
+  font-size: 1.05rem;
+}
+
+.safety-content {
+  display: grid;
+  gap: clamp(20px, 4vw, 36px);
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  align-items: center;
+}
+
+.safety-doll-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.safety-doll {
+  width: 100%;
+  border-radius: 32px;
+  box-shadow: 0 20px 42px rgba(90, 65, 145, 0.2);
+}
+
+.touch-marker {
+  position: absolute;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-weight: 700;
+  color: #ffffff;
+  box-shadow: 0 12px 20px rgba(90, 65, 145, 0.2);
+}
+
+.touch-marker.good {
+  background: linear-gradient(135deg, #4caf50, #81c784);
+}
+
+.touch-marker.bad {
+  background: linear-gradient(135deg, #ff5252, #ff8a80);
+}
+
+.touch-marker.head {
+  top: 18%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.touch-marker.hand {
+  top: 44%;
+  right: 12%;
+}
+
+.touch-marker.chest {
+  top: 38%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.touch-marker.belly {
+  bottom: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.touch-marker.knee {
+  bottom: 16%;
+  right: 18%;
+}
+
+.safety ul {
+  margin: 0;
+  padding-left: 20px;
+  display: grid;
+  gap: 16px;
+  color: #4a2c82;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.safety strong {
+  color: #ff6f61;
+}
+
+.slide:last-child .storybook {
+  margin-top: clamp(12px, 5vw, 24px);
+}
+
+.storybook {
+  position: relative;
+  background: rgba(255, 255, 255, 0.86);
+  border-radius: 44px;
+  padding: clamp(24px, 4vw, 40px);
+  box-shadow: 0 20px 42px rgba(90, 54, 134, 0.18);
+  text-align: center;
+  overflow: hidden;
+}
+
+.storybook h2 {
+  margin: 0 0 12px;
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
+  font-family: 'Baloo Bhaijaan 2', cursive;
+  color: #673ab7;
+}
+
+.storybook p {
+  margin: 0;
+  font-size: 1.05rem;
+  color: #4f3f6f;
+  line-height: 1.6;
+}
+
+.storybook-scribbles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.scribble {
+  position: absolute;
+  opacity: 0.27;
+  filter: blur(0.4px);
+}
+
+.scribble.star {
+  top: 16%;
+  left: 10%;
+  width: 68px;
+  height: 68px;
+  background: radial-gradient(circle, rgba(255, 223, 128, 0.9) 0, rgba(255, 223, 128, 0) 70%);
+}
+
+.scribble.note {
+  bottom: 12%;
+  right: 12%;
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, rgba(126, 87, 194, 0.9) 0, rgba(126, 87, 194, 0) 70%);
+}
+
+.scribble.heart {
+  top: 20%;
+  right: 28%;
+  width: 96px;
+  height: 96px;
+  background: radial-gradient(circle, rgba(255, 111, 97, 0.85) 0, rgba(255, 111, 97, 0) 70%);
+}
+
+@keyframes bounce-soft {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-10px) scale(1.02);
+  }
+}
+
+@keyframes cloud-drift {
+  0% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(12px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.2) rotate(18deg);
+    opacity: 1;
+  }
+}
+
+@keyframes floaty {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-18px);
+  }
+}
+
+@keyframes wiggle {
+  0%, 100% {
+    transform: rotate(-4deg) scale(1);
+  }
+  50% {
+    transform: rotate(4deg) scale(1.08);
+  }
+}
+
+@media (max-width: 960px) {
+  .hero {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-copy {
+    align-items: center;
+  }
+
+  .hero-badge {
+    align-self: center;
+  }
+
+  .activity-slide {
+    grid-template-columns: 1fr;
+  }
+
+  .play-tips {
+    order: -1;
+  }
+
+  .slide-controls {
+    bottom: clamp(12px, 6vw, 28px);
+    left: clamp(12px, 6vw, 32px);
+    right: clamp(12px, 6vw, 32px);
+  }
+}
+
+@media (max-width: 640px) {
+  .app {
+    padding: 24px 18px 72px;
+  }
+
+  .hero {
+    border-radius: 36px;
+  }
+
+  .slide {
+    padding-bottom: clamp(120px, 24vw, 160px);
+    gap: 32px;
+  }
+
+  .frame-body {
+    padding: 18px;
+  }
+
+  .shape-piece {
+    min-width: 120px;
+  }
+
+  .slide-controls {
+    gap: 12px;
+    left: clamp(16px, 10vw, 28px);
+    right: clamp(16px, 10vw, 28px);
+  }
+}
